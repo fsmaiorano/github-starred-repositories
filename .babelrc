@@ -14,6 +14,9 @@
                     "underscore": "lodash"
                 }
             }
+        ],
+        [
+            "transform-class-properties"
         ]
     ]
 }

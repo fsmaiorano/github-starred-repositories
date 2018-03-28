@@ -11,6 +11,7 @@ const Input = props => (
     type={props.type}
     autoComplete="off"
     margin="normal"
+    onChange={props.onTyping(event)}
   />
 );
 
