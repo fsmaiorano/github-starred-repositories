@@ -5,6 +5,8 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
+import { Loading } from 'shared/template';
+
 const Navbar = props => (
     <AppBar position="static" color="default">
         <Toolbar>
@@ -12,11 +14,12 @@ const Navbar = props => (
                 {props.title}
             </Typography>
         </Toolbar>
+        <Loading />
     </AppBar>
 );
 
 Navbar.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 export default Navbar;

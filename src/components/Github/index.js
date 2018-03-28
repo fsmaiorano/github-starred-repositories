@@ -10,24 +10,25 @@ class Github extends Component {
 
     state = {
         username: '',
+        isLoading: false,
     }
 
-    componentDidMount() {
+    searchByUsername = (event) => {
+        this.setState({ username: event.target.value });
     }
 
-    searchByUsername = async (event) => {
-        console.log(event.target.value)
-        const username = event.target.value;
-        this.setState({ username });
+    doSearch = async () => {
+        const { username } = this.state;
+        this.setState({ isLoading: true });
 
-        //const response = await api.get(`/users/${username}/starred`);
+        const response = await api.get(`/users/${username}/starred`);
     }
 
     render() {
         return (
             <div className="container">
                 <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
-                <FloatButton color="primary" label="Search" icon="search" />
+                <FloatButton color="primary" label="Search" icon="search" onclick={this.doSearch} />
             </div>
         )
     }
