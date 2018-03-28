@@ -1,7 +1,15 @@
+
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+const htmlPlugin = new HtmlWebPackPlugin({
+    template: "./src/index.html",
+    filename: "./index.html"
+  });
+
 module.exports = {
     entry: [
         '@babel/polyfill',
-        './src/app.js',
+        './index.js',
     ],
     output: {
         path: __dirname + '/public',
@@ -12,6 +20,9 @@ module.exports = {
         contentBase: __dirname + '/public',
         port: 3000,
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
         rules: [
             {
@@ -19,7 +30,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                }
+                },
             },
             {
                 test: /\.scss$/,
@@ -33,5 +44,11 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new HtmlWebPackPlugin({
+        template: "./src/index.html",
+        filename: "./index.html"
+      }),
+    ]
 }
 

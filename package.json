@@ -2,7 +2,6 @@
   "name": "github-starred-repositories",
   "version": "1.0.0",
   "description": "",
-  "main": "/public/app.js",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production"
@@ -25,8 +24,11 @@
     "@babel/polyfill": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.1.0",
     "node-sass": "^4.8.3",
+    "prop-types": "^15.6.1",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "webpack": "^4.3.0",
@@ -34,6 +36,9 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   }
 }
