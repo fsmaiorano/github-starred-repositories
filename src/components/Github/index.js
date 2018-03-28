@@ -20,7 +20,7 @@ class Github extends Component {
         const username = event.target.value;
         this.setState({ username });
 
-        const response = await api.get(`/users/${username}`);
+        //const response = await api.get(`/users/${username}/starred`);
     }
 
     render() {
