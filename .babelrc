@@ -1,6 +1,6 @@
 {
     "presets": [
-        "react"
+        "@babel/preset-react"
     ],
     "plugins": [
         [
@@ -16,7 +16,10 @@
             }
         ],
         [
-            "transform-class-properties"
+            "module:@Babel/plugin-proposal-class-properties"
+        ],
+        [
+            "module:@babel/plugin-proposal-object-rest-spread"
         ]
     ]
 }
