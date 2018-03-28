@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './github.scss';
 
-import Input from './../../shared/template/input';
+import Input from 'shared/template/input';
 
 class Github extends Component {
     render() {
