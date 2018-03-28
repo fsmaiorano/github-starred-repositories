@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import './github.scss';
 
+import api from 'shared/api/api';
+
 import { Input, FloatButton } from 'shared/template';
-import { debounce } from 'rxjs/operators';
 
 class Github extends Component {
 
@@ -11,10 +12,15 @@ class Github extends Component {
         username: '',
     }
 
-    searchByUsername = (event) => {
-        if(event){
+    componentDidMount() {
+    }
+
+    searchByUsername = async (event) => {
         console.log(event.target.value)
-        }
+        const username = event.target.value;
+        this.setState({ username });
+
+        const response = await api.get(`/users/${username}`);
     }
 
     render() {
