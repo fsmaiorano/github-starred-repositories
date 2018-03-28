@@ -1,5 +1,7 @@
-import Navbar from './navbar/navbar';
+import Navbar from './navbar';
+import Input from './input';
 
 export {
-    Navbar
+    Navbar,
+    Input,
 };

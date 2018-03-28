@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -13,5 +14,9 @@ const Navbar = props => (
         </Toolbar>
     </AppBar>
 );
+
+Navbar.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
 
 export default Navbar;
