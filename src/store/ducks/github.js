@@ -13,8 +13,8 @@ export const Types = {
 const initialState = {
     repositories: [],
     isLoading: false,
-    activeFilter: 'None',
-    activeOrderBy: 'None'
+    activeFilter: '',
+    activeOrderBy: ''
 };
 
 //Reducers
@@ -59,7 +59,7 @@ export default function github(state = initialState, action) {
             isLoading: false,
             repositories:  action.payload.repositories 
         }
-        
+
         default: return state;
     }
 }

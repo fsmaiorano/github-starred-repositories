@@ -26,8 +26,23 @@ class Github extends Component {
             this.props.getStarredRepositoriesRequest(username);
     }
 
+    applyFilter = (activeFilter) => {
+        console.log(activeFilter);
+    }
+
+    applyOrderBy = (activeOrderBy) => {
+            console.log(activeOrderBy);
+    }
+
     render() {
         const { repositories, activeFilter, activeOrderBy } = this.props;
+        
+        if(activeFilter !== '')
+            this.applyFilter(activeFilter)
+
+       if(activeOrderBy !== '')
+            this.applyOrderBy(activeOrderBy)
+
         return (
             <div>
                 <div >
