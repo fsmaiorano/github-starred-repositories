@@ -4,6 +4,7 @@ import FloatButton from './float-button';
 import Loading from './loading';
 import MediaCard from './media-card';
 import Badges from './badges';
+import OrderBy from './orderBy';
 
 export {
     Navbar,
@@ -12,4 +13,5 @@ export {
     Loading,
     MediaCard,
     Badges,
+    OrderBy,
 };

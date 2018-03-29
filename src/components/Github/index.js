@@ -8,7 +8,7 @@ import './github.scss';
 
 import api from 'shared/api/api';
 import GithubRepository from './GithubRepository';
-import { Input, FloatButton } from 'shared/template';
+import { Input, FloatButton, OrderBy } from 'shared/template';
 
 class Github extends Component {
 
@@ -33,6 +33,11 @@ class Github extends Component {
                 <div >
                     <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
                     <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
+                </div>
+                <div>
+                {
+                    repositories.length > 0 ? <OrderBy /> : ""
+                }
                 </div>
                 <div className="container">
                     {
