@@ -5,6 +5,9 @@ export const Types = {
 
     SET_ORDERBY: 'github/SET_ORDERBY',
     SET_ORDERBY_SUCCESS: 'github/SET_ORDERBY_SUCCESS',
+
+    SET_FILTER: 'github/SET_FILTER',
+    SET_FILTER_SUCCESS: 'github/SET_FILTER_SUCCESS',
 };
 
 const initialState = {
@@ -26,6 +29,17 @@ export default function github(state = initialState, action) {
             return {
                 ...state,
                 activeOrderBy: action.payload.orderBy,
+                isLoading: false,
+            }
+            case Types.SET_FILTER:
+            return {
+                ...state,
+                isLoading: true,
+            }
+            case Types.SET_FILTER_SUCCESS:
+            return {
+                ...state,
+                activeFilter: action.payload.filter,
                 isLoading: false,
             }
         case Types.GET_STARRED_REPOSITORIES:
@@ -56,6 +70,21 @@ export const Creators = {
         type: Types.SET_ORDERBY_SUCCESS,
         payload: {
             orderBy,
+        }
+    }),
+
+    setFilter: filter => ({
+        type: Types.SET_FILTER,
+        payload: {
+            filter,
+        }
+    }),
+
+
+    setFilterSuccess: filter => ({
+        type: Types.SET_FILTER_SUCCESS,
+        payload: {
+            filter,
         }
     }),
 

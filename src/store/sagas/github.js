@@ -15,6 +15,14 @@ export function* setOrderBy(action) {
     try {
       yield put(GithubActions.setOrderBySuccess(action.payload.orderBy));
     } catch (err) {
-      console.tron.log('saga err', err);
+        yield put(GithubActions.setOrderByError('A error occurred on set order by.'));
+    }
+}
+
+export function* setFilter(action) {
+    try {
+      yield put(GithubActions.setFilterSuccess(action.payload.filter));
+    } catch (err) {
+        yield put(GithubActions.setFilterError('A error occurred on set filter.'));
     }
 }

@@ -23,6 +23,7 @@ class OrderBy extends Component {
         const filter = event.target.value;
         this.setState({ filter });
         this.props.setOrderBy(filter);
+        this.props.setFilter('setei filtro');
       };
 
 render(){
@@ -51,6 +52,7 @@ render(){
 
 const mapStateToProps = state => ({
     activeFilter: state.github.activeFilter,
+    activeOrderBy: state.github.activeOrderBy,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
