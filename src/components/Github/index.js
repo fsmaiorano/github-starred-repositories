@@ -27,7 +27,7 @@ class Github extends Component {
     }
 
     render() {
-        const { repositories } = this.props;
+        const { repositories, activeFilter, activeOrderBy } = this.props;
         return (
             <div>
                 <div >
@@ -53,6 +53,8 @@ class Github extends Component {
 
 const mapStateToProps = state => ({
     repositories: state.github.repositories,
+    activeFilter: state.github.activeFilter,
+    activeOrderBy: state.github.activeOrderBy,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);

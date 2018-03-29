@@ -51,8 +51,7 @@ render(){
 
 
 const mapStateToProps = state => ({
-    activeFilter: state.github.activeFilter,
-    activeOrderBy: state.github.activeOrderBy,
+
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
