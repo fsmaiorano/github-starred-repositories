@@ -30,11 +30,11 @@ class Github extends Component {
         const { repositories } = this.props;
         return (
             <div>
-                <div className="container">
+                <div >
                     <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
                     <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
                 </div>
-                <div>
+                <div className="container">
                     {
                         repositories.length > 0 && repositories.map(repo => (
                             <GithubRepository key={repo.id} repository={repo} />

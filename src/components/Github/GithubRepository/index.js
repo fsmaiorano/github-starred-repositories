@@ -5,9 +5,9 @@ import './github-repository.scss';
 import { MediaCard } from 'shared/template';
 
 const GithubRepository = ({repository}) => (
-    <div className="container">
+    <div className="container-repository">
     <MediaCard data={repository} />
-        <p>id {repository.id}</p>
+        {/* <p>id {repository.id}</p>
         <p>language {repository.language}</p>
         <p>pushed at{repository.pushed_at}</p>
         <p>created at{repository.created_at}</p>
@@ -16,7 +16,7 @@ const GithubRepository = ({repository}) => (
         <p>name {repository.name}</p>
         <p>stars {repository.stargazers_count}</p>
         <p>watchers {repository.watchers_count}</p>
-        <p>url {repository.url}</p>
+        <p>url {repository.url}</p> */}
     </div>
 
  

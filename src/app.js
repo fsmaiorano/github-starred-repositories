@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <div>
                 <Navbar title="Github Starred Repositories" loading={isLoading} />
-                <div className="container">
+                <div className="main-container">
                     <Github />
                 </div>
             </div>
