@@ -38,7 +38,7 @@ class Badges extends Component {
         return(
             <div>
             <Tooltip id="tooltip-icon" title={this.getTooltip(icon)}>
-                <Badge className="" badgeContent={count} color="primary">
+                <Badge className="badge" badgeContent={count} color="primary">
                     <img src={this.getIcon(icon)} className="badge-img" />
                 </Badge>
             </Tooltip>
