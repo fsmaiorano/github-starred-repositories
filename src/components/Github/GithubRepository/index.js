@@ -2,8 +2,11 @@ import React from 'react';
 
 import './github-repository.scss'; 
 
+import { MediaCard } from 'shared/template';
+
 const GithubRepository = ({repository}) => (
     <div className="container">
+    <MediaCard data={repository} />
         <p>id {repository.id}</p>
         <p>language {repository.language}</p>
         <p>pushed at{repository.pushed_at}</p>
@@ -15,6 +18,8 @@ const GithubRepository = ({repository}) => (
         <p>watchers {repository.watchers_count}</p>
         <p>url {repository.url}</p>
     </div>
+
+ 
 );
 
 export default GithubRepository;

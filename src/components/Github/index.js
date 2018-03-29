@@ -22,32 +22,33 @@ class Github extends Component {
 
     doSearch = async () => {
         const { username } = this.state;
-        this.props.getStarredRepositoriesRequest(username);
+        if (username.length > 1)
+            this.props.getStarredRepositoriesRequest(username);
     }
 
     render() {
         const { repositories } = this.props;
         return (
             <div>
-            <div className="container">
-                <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
-                <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
-            </div>
-            <div>
-                {
-                    repositories.length > 0 && repositories.map(repo => (
+                <div className="container">
+                    <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
+                    <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
+                </div>
+                <div>
+                    {
+                        repositories.length > 0 && repositories.map(repo => (
                             <GithubRepository key={repo.id} repository={repo} />
-                    ))
-                }
-            </div>
+                        ))
+                    }
+                </div>
             </div>
         )
     }
 }
 
- const mapStateToProps = state => ({
-     repositories: state.github.repositories,
- });
+const mapStateToProps = state => ({
+    repositories: state.github.repositories,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
 
