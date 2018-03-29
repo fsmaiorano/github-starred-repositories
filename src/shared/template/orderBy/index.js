@@ -23,7 +23,7 @@ class OrderBy extends Component {
         const filter = event.target.value;
         this.setState({ filter });
         this.props.setOrderBy(filter);
-        this.props.setFilter('setei filtro');
+        // this.props.setFilter('setei filtro');
       };
 
 render(){
