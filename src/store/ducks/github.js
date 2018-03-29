@@ -3,28 +3,29 @@ export const Types = {
     GET_STARRED_REPOSITORIES_SUCCESS: 'github/GET_STARRED_REPOSITORIES_SUCCESS',
     GET_STARRED_REPOSITORIES_ERROR: 'github/GET_STARRED_REPOSITORIES_ERROR',
 
-    SET_FILTER: 'github/SET_FILTER',
-    SET_FILTER_SUCCESS: 'github/SET_FILTER_SUCCESS',
+    SET_ORDERBY: 'github/SET_ORDERBY',
+    SET_ORDERBY_SUCCESS: 'github/SET_ORDERBY_SUCCESS',
 };
 
 const initialState = {
     repositories: [],
     isLoading: false,
-    activeFilter: 'All',
+    activeFilter: 'None',
+    activeOrderBy: 'None'
 };
 
 //Reducers
 export default function github(state = initialState, action) {
     switch (action.type) {
-        case Types.SET_FILTER:
+        case Types.SET_ORDERBY:
             return {
                 ...state,
                 isLoading: true,
             }
-            case Types.SET_FILTER_SUCCESS:
+            case Types.SET_ORDERBY_SUCCESS:
             return {
                 ...state,
-                activeFilter: action.payload.filter,
+                activeOrderBy: action.payload.orderBy,
                 isLoading: false,
             }
         case Types.GET_STARRED_REPOSITORIES:
@@ -44,17 +45,17 @@ export default function github(state = initialState, action) {
 
 //Actions
 export const Creators = {
-    setFilter: filter => ({
-        type: Types.SET_FILTER,
+    setOrderBy: orderBy => ({
+        type: Types.SET_ORDERBY,
         payload: {
-            filter,
+            orderBy,
         }
     }),
 
-    setFilterSuccess: filter => ({
-        type: Types.SET_FILTER_SUCCESS,
+    setOrderBySuccess: orderBy => ({
+        type: Types.SET_ORDERBY_SUCCESS,
         payload: {
-            filter,
+            orderBy,
         }
     }),
 

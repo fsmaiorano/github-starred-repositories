@@ -22,7 +22,7 @@ class OrderBy extends Component {
     handleChange = event => {
         const filter = event.target.value;
         this.setState({ filter });
-        this.props.setFilter(filter);
+        this.props.setOrderBy(filter);
       };
 
 render(){

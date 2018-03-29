@@ -11,10 +11,10 @@ export function* getStarredRepositoriesRequest(action) {
     }
 };
 
-export function* setActiveFilter(action) {
+export function* setOrderBy(action) {
     try {
-      yield put(GithubActions.setFilterSuccess(action.payload.filter));
+      yield put(GithubActions.setOrderBySuccess(action.payload.orderBy));
     } catch (err) {
       console.tron.log('saga err', err);
     }
-  }
+}
