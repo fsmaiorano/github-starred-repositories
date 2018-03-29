@@ -36,4 +36,8 @@ const MediaCard = ({ data }) => (
     </div>
 );
 
+MediaCard.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
 export default MediaCard;
