@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as GithubActions } from 'store/ducks/github';
 
 import './github.scss';
 
@@ -21,17 +25,35 @@ class Github extends Component {
         const { username } = this.state;
         this.setState({ isLoading: true });
 
-        const response = await api.get(`/users/${username}/starred`);
+        this.props.getStarredRepositoriesRequest(username);
     }
 
     render() {
+        const { repositories } = this.props;
         return (
+            <div>
             <div className="container">
                 <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
-                <FloatButton color="primary" label="Search" icon="search" onclick={this.doSearch} />
+                <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
+            </div>
+            <div>
+                {
+                    repositories.length > 0 && repositories.map(repo => (
+                        <div>
+                            {repo.id}
+                        </div>
+                    ))
+                }
+            </div>
             </div>
         )
     }
 }
 
-export default Github;
+ const mapStateToProps = state => ({
+     repositories: state.github.repositories,
+ });
+
+const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Github);

@@ -5,7 +5,7 @@ import Icon from 'material-ui/Icon';
 import Button from 'material-ui/Button';
 
 const FloatButton = props => (
-    <Button variant="fab" mini color={props.color} aria-label={props.label}>
+    <Button variant="fab" mini color={props.color} aria-label={props.label} onClick={props.click}>
           <Icon>{props.icon}</Icon>
     </Button>
 );
