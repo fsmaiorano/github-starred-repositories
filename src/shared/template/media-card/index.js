@@ -23,8 +23,8 @@ const MediaCard = ({ data }) => (
                 <Typography component="p">
                     Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
                     across all continents except Antarctica
-                    <Badges icon="star"/>
-        </Typography>
+                    <Badges icon="star" count="5" />
+                </Typography>
             </CardContent>
             <CardActions>
                 <Button size="small" color="primary">
