@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import { Badges } from 'shared/template';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
@@ -22,6 +23,7 @@ const MediaCard = ({ data }) => (
                 <Typography component="p">
                     Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
                     across all continents except Antarctica
+                    <Badges icon="star"/>
         </Typography>
             </CardContent>
             <CardActions>
@@ -38,6 +40,6 @@ const MediaCard = ({ data }) => (
 
 MediaCard.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 export default MediaCard;
