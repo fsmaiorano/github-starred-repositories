@@ -6,6 +6,8 @@ import { Creators as GithubActions } from 'store/ducks/github';
 
 import './github.scss';
 
+import orderBy from 'lodash/orderBy';
+
 import api from 'shared/api/api';
 import GithubRepository from './GithubRepository';
 import { Input, FloatButton, OrderBy } from 'shared/template';
@@ -14,6 +16,7 @@ class Github extends Component {
 
     state = {
         username: '',
+        listRepositories: [],
     }
 
     searchByUsername = (event) => {
@@ -26,22 +29,23 @@ class Github extends Component {
             this.props.getStarredRepositoriesRequest(username);
     }
 
-    applyFilter = (activeFilter) => {
+    applyFilter = (activeFilter, repositories) => {
         console.log(activeFilter);
     }
-
-    applyOrderBy = (activeOrderBy) => {
-            console.log(activeOrderBy);
+    
+    applyOrderBy = (activeOrderBy, repositories) => {
+        console.log(activeOrderBy);
+        let z = orderBy(repositories, [repo => repo[`${activeOrderBy}`]], ['asc']);
     }
 
     render() {
         const { repositories, activeFilter, activeOrderBy } = this.props;
         
         if(activeFilter !== '')
-            this.applyFilter(activeFilter)
+            this.applyFilter(activeFilter, repositories);
 
        if(activeOrderBy !== '')
-            this.applyOrderBy(activeOrderBy)
+            this.applyOrderBy(activeOrderBy, repositories);
 
         return (
             <div>

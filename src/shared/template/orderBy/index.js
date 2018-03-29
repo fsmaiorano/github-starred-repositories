@@ -39,9 +39,9 @@ render(){
           <MenuItem value={'All'}>
            <em>None</em>
           </MenuItem>
-          <MenuItem value={'Stars'}>Stars</MenuItem>
-          <MenuItem value={'OpenIssues'}>Open Issues</MenuItem>
-          <MenuItem value={'RepositoryName'}>Repository Name</MenuItem>
+          <MenuItem value={'stargazers_count'}>Stars</MenuItem>
+          <MenuItem value={'open_issues_count'}>Open Issues</MenuItem>
+          <MenuItem value={'name'}>Repository Name</MenuItem>
         </Select>
       </FormControl>
       </div>
