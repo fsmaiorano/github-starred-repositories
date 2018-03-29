@@ -10,3 +10,11 @@ export function* getStarredRepositoriesRequest(action) {
         yield put(GithubActions.getStarredRepositoriesError('A error occurred on load the repository.'));
     }
 };
+
+export function* setActiveFilter(action) {
+    try {
+      yield put(GithubActions.setFilterSuccess(action.payload.filter));
+    } catch (err) {
+      console.tron.log('saga err', err);
+    }
+  }

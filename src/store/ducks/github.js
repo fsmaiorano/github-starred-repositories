@@ -2,16 +2,31 @@ export const Types = {
     GET_STARRED_REPOSITORIES: 'github/GET_STARRED_REPOSITORIES',
     GET_STARRED_REPOSITORIES_SUCCESS: 'github/GET_STARRED_REPOSITORIES_SUCCESS',
     GET_STARRED_REPOSITORIES_ERROR: 'github/GET_STARRED_REPOSITORIES_ERROR',
+
+    SET_FILTER: 'github/SET_FILTER',
+    SET_FILTER_SUCCESS: 'github/SET_FILTER_SUCCESS',
 };
 
 const initialState = {
     repositories: [],
     isLoading: false,
+    activeFilter: 'All',
 };
 
 //Reducers
 export default function github(state = initialState, action) {
     switch (action.type) {
+        case Types.SET_FILTER:
+            return {
+                ...state,
+                isLoading: true,
+            }
+            case Types.SET_FILTER_SUCCESS:
+            return {
+                ...state,
+                activeFilter: action.payload.filter,
+                isLoading: false,
+            }
         case Types.GET_STARRED_REPOSITORIES:
             return {
                 ...state,
@@ -29,6 +44,20 @@ export default function github(state = initialState, action) {
 
 //Actions
 export const Creators = {
+    setFilter: filter => ({
+        type: Types.SET_FILTER,
+        payload: {
+            filter,
+        }
+    }),
+
+    setFilterSuccess: filter => ({
+        type: Types.SET_FILTER_SUCCESS,
+        payload: {
+            filter,
+        }
+    }),
+
     getStarredRepositoriesRequest: username => ({
         type: Types.GET_STARRED_REPOSITORIES,
         payload: {

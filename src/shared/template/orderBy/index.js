@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as GithubActions } from 'store/ducks/github';
+
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
@@ -16,9 +20,10 @@ class OrderBy extends Component {
     }
 
     handleChange = event => {
-        this.setState({ filter: event.target.value });
+        const filter = event.target.value;
+        this.setState({ filter });
+        this.props.setFilter(filter);
       };
-    
 
 render(){
     return(
@@ -43,4 +48,12 @@ render(){
 }
 }
 
-export default OrderBy;
+
+const mapStateToProps = state => ({
+    activeFilter: state.github.activeFilter,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
+
+
+export default  connect(mapStateToProps, mapDispatchToProps)(OrderBy);
