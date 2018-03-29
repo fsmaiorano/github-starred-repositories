@@ -7,15 +7,15 @@ import Typography from 'material-ui/Typography';
 
 import { Loading } from 'shared/template';
 
-const Navbar = props => (
+const Navbar = ({ title, loading }) => (
     <AppBar position="static" color="default">
         <Toolbar>
             <Typography variant="title" color="inherit">
-                {props.title}
+                {title}
             </Typography>
         </Toolbar>
         {
-           props.loading ? <Loading /> : ""
+           loading ? <Loading /> : ""
         }
     </AppBar>
 );
