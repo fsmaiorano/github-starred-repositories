@@ -5,7 +5,8 @@ export const Types = {
 };
 
 const initialState = {
-    repositories: []
+    repositories: [],
+    isLoading: false,
 };
 
 //Reducers
@@ -14,10 +15,12 @@ export default function github(state = initialState, action) {
         case Types.GET_STARRED_REPOSITORIES:
             return {
                 ...state,
+                isLoading: true,
             };
         case Types.GET_STARRED_REPOSITORIES_SUCCESS:
         return {
             ...state,
+            isLoading: false,
             repositories:  action.payload.repositories 
         }
         default: return state;

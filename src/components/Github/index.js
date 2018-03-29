@@ -7,14 +7,13 @@ import { Creators as GithubActions } from 'store/ducks/github';
 import './github.scss';
 
 import api from 'shared/api/api';
-
+import GithubRepository from './GithubRepository';
 import { Input, FloatButton } from 'shared/template';
 
 class Github extends Component {
 
     state = {
         username: '',
-        isLoading: false,
     }
 
     searchByUsername = (event) => {
@@ -23,8 +22,6 @@ class Github extends Component {
 
     doSearch = async () => {
         const { username } = this.state;
-        this.setState({ isLoading: true });
-
         this.props.getStarredRepositoriesRequest(username);
     }
 
@@ -39,9 +36,7 @@ class Github extends Component {
             <div>
                 {
                     repositories.length > 0 && repositories.map(repo => (
-                        <div>
-                            {repo.id}
-                        </div>
+                            <GithubRepository key={repo.id} repository={repo} />
                     ))
                 }
             </div>

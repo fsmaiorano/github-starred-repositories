@@ -14,7 +14,9 @@ const Navbar = props => (
                 {props.title}
             </Typography>
         </Toolbar>
-        <Loading />
+        {
+           props.loading ? <Loading /> : ""
+        }
     </AppBar>
 );
 

@@ -6,12 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import store from 'store';
 
 import App from './src/app.js';
-import { Navbar } from './src/shared/template';
-
 
 ReactDOM.render(
     <div>
-        <Navbar title={'Github Starred Repositories'} />
         <Provider store={store}>
             <BrowserRouter>
                 <App />
