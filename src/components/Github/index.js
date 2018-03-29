@@ -6,7 +6,7 @@ import { Creators as GithubActions } from 'store/ducks/github';
 
 import './github.scss';
 
-import orderBy from 'lodash/orderBy';
+import doOrderBy from 'lodash/orderBy';
 
 import api from 'shared/api/api';
 import GithubRepository from './GithubRepository';
@@ -17,6 +17,8 @@ class Github extends Component {
     state = {
         username: '',
         listRepositories: [],
+        activeFilter: '',
+        activeOrderBy: '',
     }
 
     searchByUsername = (event) => {
@@ -29,23 +31,27 @@ class Github extends Component {
             this.props.getStarredRepositoriesRequest(username);
     }
 
-    applyFilter = (activeFilter, repositories) => {
-        console.log(activeFilter);
+    applyFilter = (filter, repositories) => {
+        console.log(filter);
     }
-    
-    applyOrderBy = (activeOrderBy, repositories) => {
-        console.log(activeOrderBy);
-        let z = orderBy(repositories, [repo => repo[`${activeOrderBy}`]], ['asc']);
+
+    applyOrderBy = (orderBy, repositories) => {
+
+        const orderedList = doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], ['asc']);
+        this.setState({ listRepositories: orderedList, activeOrderBy: orderBy });
     }
 
     render() {
-        const { repositories, activeFilter, activeOrderBy } = this.props;
-        
-        if(activeFilter !== '')
-            this.applyFilter(activeFilter, repositories);
+        const { activeFilter, activeOrderBy } = this.state;
+        const { repositories, filter, orderBy } = this.props;
 
-       if(activeOrderBy !== '')
-            this.applyOrderBy(activeOrderBy, repositories);
+        if (activeFilter !== filter)
+            this.applyFilter(orderBy, repositories);
+
+        if (activeOrderBy !== orderBy)
+            this.applyOrderBy(orderBy, repositories);
+
+        const showRepositories = this.state.listRepositories.length > 0 ? this.state.listRepositories : repositories;
 
         return (
             <div>
@@ -54,13 +60,13 @@ class Github extends Component {
                     <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
                 </div>
                 <div>
-                {
-                    repositories.length > 0 ? <OrderBy /> : ""
-                }
+                    {
+                        showRepositories.length > 0 ? <OrderBy /> : ""
+                    }
                 </div>
                 <div className="container">
                     {
-                        repositories.length > 0 && repositories.map(repo => (
+                        showRepositories.length > 0 && showRepositories.map(repo => (
                             <GithubRepository key={repo.id} repository={repo} />
                         ))
                     }
@@ -72,8 +78,8 @@ class Github extends Component {
 
 const mapStateToProps = state => ({
     repositories: state.github.repositories,
-    activeFilter: state.github.activeFilter,
-    activeOrderBy: state.github.activeOrderBy,
+    filter: state.github.filter,
+    orderBy: state.github.orderBy,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);

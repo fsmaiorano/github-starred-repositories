@@ -13,8 +13,8 @@ export const Types = {
 const initialState = {
     repositories: [],
     isLoading: false,
-    activeFilter: '',
-    activeOrderBy: ''
+    filter: '',
+    orderBy: ''
 };
 
 //Reducers
@@ -30,7 +30,7 @@ export default function github(state = initialState, action) {
             case Types.SET_ORDERBY_SUCCESS:
             return {
                 ...state,
-                activeOrderBy: action.payload.orderBy,
+                orderBy: action.payload.orderBy,
                 isLoading: false,
             }
 
@@ -43,7 +43,7 @@ export default function github(state = initialState, action) {
             case Types.SET_FILTER_SUCCESS:
             return {
                 ...state,
-                activeFilter: action.payload.filter,
+                filter: action.payload.filter,
                 isLoading: false,
             }
 

@@ -28,10 +28,10 @@ const MediaCard = ({ data }) => (
                 </Typography>
             </CardContent>
             <CardActions>
-                <Badges icon="star" count={data.stargazers_count > 99 ? '+99' : data.stargazers_count  } />
-                <Badges icon="eye" count={data.watchers_count > 99 ? '+99' : data.stargazerswatchers_count_count } />
-                <Badges icon="repoForked" count={data.forks_count > 99 ? '+99' : data.forks_count } />
-                <Badges icon="issueOpened" count={data.open_issues_count > 99 ? '+99' : data.open_issues_count } />
+                <Badges icon="star" count={data.stargazers_count} />
+                <Badges icon="eye" count={data.watchers_count  } />
+                <Badges icon="repoForked" count={data.forks_count  } />
+                <Badges icon="issueOpened" count={data.open_issues_count } />
             </CardActions>
         </Card>
     </div>
