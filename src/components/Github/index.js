@@ -49,13 +49,17 @@ class Github extends Component {
 
         const list = listRepositories.length > 0 ? listRepositories : repositories;
 
-        const setFilter = filter !== "" ? filter : activeFilter;
-        if (setFilter != "")
-            this.applyFilter(setFilter, list);
+        if (filter !== activeFilter) {
+            const setFilter = filter !== "" ? filter : activeFilter;
+            if (setFilter != "")
+                this.applyFilter(setFilter, repositories);
+        }
 
-        const setOrderBy = orderBy !== "" ? orderBy : activeOrderBy;
-        if (setOrderBy !== "")
-            this.applyOrderBy(setOrderBy,list);
+        if (orderBy !== activeOrderBy) {
+            const setOrderBy = orderBy !== "" ? orderBy : activeOrderBy;
+            if (setOrderBy !== "")
+                this.applyOrderBy(setOrderBy, list);
+        }
     }
 
     doSort = () => {
