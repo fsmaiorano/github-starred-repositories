@@ -21,32 +21,36 @@ const initialState = {
 export default function github(state = initialState, action) {
     switch (action.type) {
 
+
+        //OrderBy
         case Types.SET_ORDERBY:
             return {
                 ...state,
                 isLoading: true,
             }
 
-            case Types.SET_ORDERBY_SUCCESS:
+        case Types.SET_ORDERBY_SUCCESS:
             return {
                 ...state,
-                orderBy: action.payload.orderBy,
                 isLoading: false,
+                orderBy: action.payload.orderBy,
             }
 
-            case Types.SET_FILTER:
+        //Filter
+        case Types.SET_FILTER:
             return {
                 ...state,
                 isLoading: true,
             }
 
-            case Types.SET_FILTER_SUCCESS:
+        case Types.SET_FILTER_SUCCESS:
             return {
                 ...state,
-                filter: action.payload.filter,
                 isLoading: false,
+                filter: action.payload.filter,
             }
 
+        //Repositories
         case Types.GET_STARRED_REPOSITORIES:
             return {
                 ...state,
@@ -54,11 +58,11 @@ export default function github(state = initialState, action) {
             };
 
         case Types.GET_STARRED_REPOSITORIES_SUCCESS:
-        return {
-            ...state,
-            isLoading: false,
-            repositories:  action.payload.repositories 
-        }
+            return {
+                ...state,
+                isLoading: false,
+                repositories: action.payload.repositories
+            }
 
         default: return state;
     }
@@ -66,6 +70,7 @@ export default function github(state = initialState, action) {
 
 //Actions
 export const Creators = {
+    //OrderBy
     setOrderBy: orderBy => ({
         type: Types.SET_ORDERBY,
         payload: {
@@ -80,6 +85,7 @@ export const Creators = {
         }
     }),
 
+    //Filter
     setFilter: filter => ({
         type: Types.SET_FILTER,
         payload: {
@@ -95,6 +101,7 @@ export const Creators = {
         }
     }),
 
+    //Repositories
     getStarredRepositoriesRequest: username => ({
         type: Types.GET_STARRED_REPOSITORIES,
         payload: {
