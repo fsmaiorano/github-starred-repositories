@@ -29,6 +29,7 @@ export default function github(state = initialState, action) {
             return {
                 ...state,
                 isLoading: true,
+                error: undefined,
             }
 
         case Types.SET_ORDERBY_SUCCESS:
@@ -36,6 +37,7 @@ export default function github(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 orderBy: action.payload.orderBy,
+                error: undefined,
             }
 
         case Types.SET_ORDERBY_ERROR:
@@ -50,6 +52,7 @@ export default function github(state = initialState, action) {
             return {
                 ...state,
                 isLoading: true,
+                error: undefined,
             }
 
         case Types.SET_FILTER_SUCCESS:
@@ -57,6 +60,7 @@ export default function github(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 filter: action.payload.filter,
+                error: undefined,
             }
 
         case Types.SET_FILTER_ERROR:
@@ -71,6 +75,7 @@ export default function github(state = initialState, action) {
             return {
                 ...state,
                 isLoading: true,
+                error: undefined,
             };
 
         case Types.GET_STARRED_REPOSITORIES_SUCCESS:
@@ -79,6 +84,7 @@ export default function github(state = initialState, action) {
                 isLoading: false,
                 repositories: action.payload.github.repositories,
                 languages: action.payload.github.languages,
+                error: undefined,
             }
 
         case Types.GET_STARRED_REPOSITORIES_ERROR:
