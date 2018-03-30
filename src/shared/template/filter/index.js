@@ -53,7 +53,6 @@ class Filter extends Component {
                         input={<Input name="filter" />}
                     >
                         <MenuItem value={'All'}>
-                            <em>None</em>
                         </MenuItem>
                         {
                             filters.map((filter) => (
