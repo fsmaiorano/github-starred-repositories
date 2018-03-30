@@ -1,5 +1,6 @@
 import api from 'shared/api/api';
 import { mapKeys } from 'lodash/mapKeys';
+import { DateFormat } from 'shared/helpers';
 import { call, put, select } from 'redux-saga/effects';
 import { Creators as GithubActions } from 'store/ducks/github';
 
@@ -8,8 +9,13 @@ export function* getStarredRepositoriesRequest(action) {
         const response = yield call(api.get, `/users/${action.payload.username}/starred`);
 
         const repositories = response.data.map(function (item) {
-            return Object.assign({}, item, { name: item.name.toLowerCase() });
-        });
+            return Object.assign({}, item, { 
+                name: item.name.toLowerCase(), 
+                pushed_at: DateFormat(item.pushed_at),
+                created_at: DateFormat(item.created_at),
+            });
+        });  
+       
 
         yield put(GithubActions.getStarredRepositoriesSuccess([...repositories]));
     } catch (error) {
@@ -32,3 +38,4 @@ export function* setFilter(action) {
         yield put(GithubActions.setFilterError('A error occurred on set filter.'));
     }
 }
+

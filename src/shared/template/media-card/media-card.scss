@@ -1,7 +1,40 @@
 .card {
-    max-width: 345px,
-}
+    height: 510px;
+    max-width: 345px;
+    min-height: 510px;
 
-  .media {
-    height: 200px,
+    
+    > .media {
+        height: 200px,
+    }
+
+     .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center !important;
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+
+        p:nth-child(2) {
+            text-align: center;
+        }
+
+        > div {
+            display: flex;
+            justify-content: space-evenly;
+            > div {
+                text-align: center;
+            p:nth-child(1) {
+                display: block;
+                line-height: 0.1px;
+            }
+            p:nth-child(2) {
+                display: block;
+            }
+        }
+        }
+    }
 }
