@@ -20,7 +20,7 @@ export function* getStarredRepositoriesRequest(action) {
 
         let languages = response.data.map((repo) => {
             if(!repo.language)
-                repo.language = "Not defined";
+                repo.language = "[No language]";
 
             return repo.language;
         });
