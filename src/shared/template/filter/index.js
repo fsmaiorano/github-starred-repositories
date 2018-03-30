@@ -15,6 +15,7 @@ import './filter.scss';
 class Filter extends Component {
 
     static propTypes = {
+        filter: PropTypes.string.isRequired,
         filters: PropTypes.arrayOf(PropTypes.shape).isRequired,
     }
 
@@ -23,15 +24,20 @@ class Filter extends Component {
         filters: [],
     }
 
-    componentDidMount = () =>   {
+    componentDidMount = () => {
         const { filters } = this.props;
         this.setState({ filters });
+    }
+
+    componentWillReceiveProps = props => {
+        if (props) {
+            this.setState({ filter: props.activeFilter, filters: props.filters });
+        }
     }
 
     handleChange = event => {
         const filter = event.target.value;
         this.setState({ filter });
-        //this.props.setOrderBy(filter);
         this.props.setFilter(filter);
     };
 

@@ -16,10 +16,10 @@ class Github extends Component {
 
     static propTypes = {
         github: PropTypes.shape({
-            repositories: PropTypes.arrayOf(PropTypes.shape),
-            isLoading: PropTypes.bool,
             filter: PropTypes.string,
-            orderBy: PropTypes.string
+            orderBy: PropTypes.string,
+            isLoading: PropTypes.bool,
+            repositories: PropTypes.arrayOf(PropTypes.shape),
         }),
     }
 
@@ -37,8 +37,15 @@ class Github extends Component {
 
     doSearch = async () => {
         const { username } = this.state;
+        this.newSearch();
         if (username.length > 1)
             this.props.getStarredRepositoriesRequest(username);
+    }
+
+    newSearch = () => {
+        this.props.setOrderBy("");
+        this.props.setFilter("");
+        this.setState({ activeFilter: "", activeOrderBy: "", listRepositories: [] });
     }
 
     applyFilter = (filter, repositories) => {
@@ -88,6 +95,7 @@ class Github extends Component {
 
         const showRepositories = this.state.listRepositories.length > 0 ? this.state.listRepositories : repositories;
 
+
         return (
             <div>
                 <div >
@@ -106,8 +114,8 @@ class Github extends Component {
                                     {
                                         showRepositories && showRepositories.length > 0 ? (
                                             <div>
-                                                <OrderBy />
-                                                <Filter filters={languages} />
+                                                <OrderBy activeOrderBy={activeOrderBy}/>
+                                                <Filter activeFilter={activeFilter} filters={languages} />
                                                 <IconButtons click={this.doSort} />
                                             </div>) : ""
                                     }

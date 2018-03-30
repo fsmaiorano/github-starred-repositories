@@ -16,6 +16,13 @@ class OrderBy extends Component {
 
   static proptypes = {
     setOrderBy: PropTypes.func.isRequired,
+    activeOrderBy: PropTypes.string.isRequired,
+  }
+
+  componentWillReceiveProps = props => {
+    if (props) {
+      this.setState({ filter: props.activeOrderBy });
+    }
   }
 
   state = {
@@ -26,7 +33,6 @@ class OrderBy extends Component {
     const filter = event.target.value;
     this.setState({ filter });
     this.props.setOrderBy(filter);
-    // this.props.setFilter('setei filtro');
   };
 
   render() {
