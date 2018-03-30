@@ -47,8 +47,6 @@ class Github extends Component {
     handleFilters = (orderBy, filter, repositories, listRepositories) => {
         const { activeFilter, activeOrderBy } = this.state;
 
-        const list = listRepositories.length > 0 ? listRepositories : repositories;
-
         if (filter !== activeFilter) {
             const setFilter = filter !== "" ? filter : activeFilter;
             if (setFilter != "")
@@ -56,6 +54,7 @@ class Github extends Component {
         }
 
         if (orderBy !== activeOrderBy) {
+            const list = listRepositories.length > 0 ? listRepositories : repositories;
             const setOrderBy = orderBy !== "" ? orderBy : activeOrderBy;
             if (setOrderBy !== "")
                 this.applyOrderBy(setOrderBy, list);
