@@ -13,4 +13,4 @@ In this application you can consult all the starred repositories of a user and a
 *	In your browser, access the url: ``` localhost:3000 ```.
 
 ## Production
-# Run ```npm run build or yarn run build``` for generate the production package.
+*   Run ```npm run build or yarn run build``` for generate the production package.
