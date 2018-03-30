@@ -48,9 +48,9 @@ class Github extends Component {
 
     applyOrderBy = (orderBy, repositories) => {
         const { sort } = this.state;
-        this.setState({ sort: sort === 'asc' ? 'desc' : 'asc' })
-        const orderedList = orderBy !== "" ? doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(repositories, [repo => repo.id], [sort]);
-        this.setState({ listRepositories: orderedList, activeOrderBy: orderBy });
+        const newSort = sort === 'asc' ? 'desc' : 'asc'
+        const orderedList = orderBy !== "" ? doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [newSort]) : doOrderBy(repositories, [repo => repo.id], [newSort]);
+        this.setState({ listRepositories: orderedList, activeOrderBy: orderBy, sort: newSort });
     }
 
     handleFilters = (orderBy, filter, repositories, listRepositories) => {
