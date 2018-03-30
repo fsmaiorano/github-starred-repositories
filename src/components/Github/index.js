@@ -48,9 +48,10 @@ class Github extends Component {
         this.setState({ activeFilter: "", activeOrderBy: "", listRepositories: [] });
     }
 
-    applyFilter = (filter, repositories) => {
+    applyFilter = (filter, orderBy, repositories) => {
         const filteredList = repositories.filter(f => f.language === filter);
         this.setState({ listRepositories: filteredList, activeFilter: filter });
+        this.applyOrderBy(orderBy, filteredList);
     }
 
     applyOrderBy = (orderBy, repositories) => {
@@ -66,7 +67,7 @@ class Github extends Component {
         if (filter !== activeFilter) {
             const setFilter = filter !== "" ? filter : activeFilter;
             if (setFilter != "")
-                this.applyFilter(setFilter, repositories);
+                this.applyFilter(setFilter, orderBy, repositories);
         }
 
         if (orderBy !== activeOrderBy) {
