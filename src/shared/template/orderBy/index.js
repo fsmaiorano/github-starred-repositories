@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -15,38 +14,42 @@ import './orderBy.scss';
 
 class OrderBy extends Component {
 
-    state = {
-        filter: ''
-    }
+  static proptypes = {
+    setOrderBy: PropTypes.func.isRequired,
+  }
 
-    handleChange = event => {
-        const filter = event.target.value;
-        this.setState({ filter });
-        this.props.setOrderBy(filter);
-        // this.props.setFilter('setei filtro');
-      };
+  state = {
+    filter: ''
+  }
 
-render(){
-    return(
-        <div className="container-orderBy">
+  handleChange = event => {
+    const filter = event.target.value;
+    this.setState({ filter });
+    this.props.setOrderBy(filter);
+    // this.props.setFilter('setei filtro');
+  };
+
+  render() {
+    return (
+      <div className="container-orderBy">
         <FormControl className="form-control-orderBy">
-        <InputLabel htmlFor="orderBy">Order by...</InputLabel>
-        <Select
-          value={this.state.filter}
-          onChange={this.handleChange}
-          input={<Input name="orderBy" />}
-        >
-          <MenuItem value={'All'}>
-           <em>None</em>
-          </MenuItem>
-          <MenuItem value={'stargazers_count'}>Stars</MenuItem>
-          <MenuItem value={'open_issues_count'}>Open Issues</MenuItem>
-          <MenuItem value={'name'}>Repository Name</MenuItem>
-        </Select>
-      </FormControl>
+          <InputLabel htmlFor="orderBy">Order by...</InputLabel>
+          <Select
+            value={this.state.filter}
+            onChange={this.handleChange}
+            input={<Input name="orderBy" />}
+          >
+            <MenuItem value={'All'}>
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={'stargazers_count'}>Stars</MenuItem>
+            <MenuItem value={'open_issues_count'}>Open Issues</MenuItem>
+            <MenuItem value={'name'}>Repository Name</MenuItem>
+          </Select>
+        </FormControl>
       </div>
     )
-}
+  }
 }
 
 
@@ -57,4 +60,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
 
 
-export default  connect(mapStateToProps, mapDispatchToProps)(OrderBy);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderBy);

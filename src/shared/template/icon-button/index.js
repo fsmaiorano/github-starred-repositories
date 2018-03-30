@@ -18,7 +18,7 @@ const IconButtons = props => (
 )
 
 IconButtons.propTypes = {
-    classes: PropTypes.object.isRequired,
+    click: PropTypes.func.isRequired,
 };
 
 export default IconButtons;

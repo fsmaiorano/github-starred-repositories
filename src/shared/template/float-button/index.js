@@ -14,7 +14,9 @@ const FloatButton = props => (
 );
 
 FloatButton.propTypes = {
-    classes: PropTypes.object.isRequired,
+    color: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    click: PropTypes.func.isRequired,
 };
 
 export default FloatButton;

@@ -44,7 +44,7 @@ const MediaCard = ({ data }) => (
 );
 
 MediaCard.propTypes = {
-    classes: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 };
 
 export default MediaCard;

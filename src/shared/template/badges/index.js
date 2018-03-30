@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 
 import './badges.scss';
@@ -14,6 +13,11 @@ import Badge from 'material-ui/Badge';
 import Tooltip from 'material-ui/Tooltip';
 
 class Badges extends Component {
+
+    static propTypes = {
+        icon: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+    }
 
     getIcon = (iconName) => {
         switch (iconName) {

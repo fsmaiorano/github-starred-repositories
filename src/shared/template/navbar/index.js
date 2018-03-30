@@ -21,7 +21,8 @@ const Navbar = ({ title, loading }) => (
 );
 
 Navbar.propTypes = {
-    classes: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

@@ -16,7 +16,9 @@ const Input = props => (
 );
 
 Input.propTypes = {
-    classes: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onTyping: PropTypes.func.isRequired,
 };
   
 

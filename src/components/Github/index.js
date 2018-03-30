@@ -14,6 +14,15 @@ import { Input, FloatButton, OrderBy, IconButtons, Filter } from 'shared/templat
 
 class Github extends Component {
 
+    static propTypes = {
+        github: PropTypes.shape({
+            repositories: PropTypes.arrayOf(PropTypes.shape),
+            isLoading: PropTypes.bool,
+            filter: PropTypes.string,
+            orderBy: PropTypes.string
+        }),
+    }
+
     state = {
         sort: 'asc',
         username: '',

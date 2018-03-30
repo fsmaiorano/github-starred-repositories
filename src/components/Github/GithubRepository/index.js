@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './github-repository.scss';
 
@@ -9,5 +10,9 @@ const GithubRepository = ({ repository }) => (
         <MediaCard data={repository} />
     </div>
 );
+
+GithubRepository.propTypes= {
+    repository: PropTypes.object.isRequired,
+}
 
 export default GithubRepository;

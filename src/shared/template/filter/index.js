@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -14,6 +13,10 @@ import Input, { InputLabel } from 'material-ui/Input';
 import './filter.scss';
 
 class Filter extends Component {
+
+    static propTypes = {
+        filters: PropTypes.arrayOf(PropTypes.shape).isRequired,
+    }
 
     state = {
         filter: '',
