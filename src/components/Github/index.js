@@ -32,18 +32,30 @@ class Github extends Component {
             this.props.getStarredRepositoriesRequest(username);
     }
 
-    applyFilter = (filter, repositories, listRepositories) => {
-        const list = listRepositories.length > 0 ? listRepositories : repositories;
+    applyFilter = (filter, repositories) => {
         const filteredList = repositories.filter(f => f.language === filter);
         this.setState({ listRepositories: filteredList, activeFilter: filter });
     }
 
-    applyOrderBy = (orderBy, repositories, listRepositories) => {
+    applyOrderBy = (orderBy, repositories) => {
         const { sort } = this.state;
-        const list = listRepositories.length > 0 ? listRepositories : repositories;
         this.setState({ sort: sort === 'asc' ? 'desc' : 'asc' })
-        const orderedList = orderBy !== "" ? doOrderBy(list, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(list, [repo => repo.id], [sort]);
+        const orderedList = orderBy !== "" ? doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(repositories, [repo => repo.id], [sort]);
         this.setState({ listRepositories: orderedList, activeOrderBy: orderBy });
+    }
+
+    handleFilters = (orderBy, filter, repositories, listRepositories) => {
+        const { activeFilter, activeOrderBy } = this.state;
+
+        const list = listRepositories.length > 0 ? listRepositories : repositories;
+
+        const setFilter = filter !== "" ? filter : activeFilter;
+        if (setFilter != "")
+            this.applyFilter(setFilter, list);
+
+        const setOrderBy = orderBy !== "" ? orderBy : activeOrderBy;
+        if (setOrderBy !== "")
+            this.applyOrderBy(setOrderBy,list);
     }
 
     doSort = () => {
@@ -59,11 +71,8 @@ class Github extends Component {
         const { activeFilter, activeOrderBy, listRepositories } = this.state;
         const { repositories, filter, orderBy, languages } = this.props;
 
-        if (activeFilter !== filter)
-            this.applyFilter(filter, repositories, listRepositories);
-
-        if (activeOrderBy !== orderBy)
-            this.applyOrderBy(orderBy, repositories, listRepositories);
+        if (activeFilter !== filter || activeOrderBy !== orderBy)
+            this.handleFilters(orderBy, filter, repositories, listRepositories);
 
         const showRepositories = this.state.listRepositories.length > 0 ? this.state.listRepositories : repositories;
 
