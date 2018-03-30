@@ -5,6 +5,7 @@ import Loading from './loading';
 import MediaCard from './media-card';
 import Badges from './badges';
 import OrderBy from './orderBy';
+import IconButtons from './icon-button';
 
 export {
     Navbar,
@@ -14,4 +15,5 @@ export {
     MediaCard,
     Badges,
     OrderBy,
+    IconButtons,
 };

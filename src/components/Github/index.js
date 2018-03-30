@@ -10,7 +10,7 @@ import doOrderBy from 'lodash/orderBy';
 
 import api from 'shared/api/api';
 import GithubRepository from './GithubRepository';
-import { Input, FloatButton, OrderBy } from 'shared/template';
+import { Input, FloatButton, OrderBy, IconButtons } from 'shared/template';
 
 class Github extends Component {
 
@@ -18,6 +18,7 @@ class Github extends Component {
         username: '',
         activeFilter: '',
         activeOrderBy: '',
+        sort: 'asc',
         listRepositories: [],
     }
 
@@ -36,9 +37,19 @@ class Github extends Component {
     }
 
     applyOrderBy = (orderBy, repositories) => {
-
-        const orderedList = doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], ['asc']);
+        const { sort } = this.state;
+        this.setState({ sort: sort === 'asc' ? 'desc' : 'asc' })
+        const orderedList = orderBy !== "" ? doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(repositories, [repo => repo.id], [sort]);
         this.setState({ listRepositories: orderedList, activeOrderBy: orderBy });
+    }
+
+    doSort = () => {
+        const { listRepositories, activeOrderBy } = this.state;
+        const { repositories } = this.props;
+
+        const showRepositories = listRepositories.length > 0 ? listRepositories : repositories;
+
+        this.applyOrderBy(activeOrderBy, showRepositories);
     }
 
     render() {
@@ -61,7 +72,7 @@ class Github extends Component {
                 </div>
                 <div>
                     {
-                        showRepositories.length > 0 ? <OrderBy /> : ""
+                        showRepositories.length > 0 ? (<div><OrderBy /><IconButtons click={this.doSort} /></div>) : ""
                     }
                 </div>
                 <div className="container">
