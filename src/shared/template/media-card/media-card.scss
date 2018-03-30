@@ -2,20 +2,21 @@
     height: 510px;
     max-width: 345px;
     min-height: 510px;
-
+    overflow: hidden;
     
     > .media {
         height: 200px,
     }
 
      .card-title {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         text-align: center !important;
     }
 
     .card-info {
         display: flex;
+        overflow: hidden;
         flex-direction: column;
 
         p:nth-child(2) {
@@ -35,6 +36,14 @@
                 display: block;
             }
         }
+        }
+    }
+
+    .card-status {
+        display: flex;
+        justify-content: space-around;
+        div{
+            display: inline-block;
         }
     }
 }

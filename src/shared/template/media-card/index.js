@@ -33,12 +33,15 @@ const MediaCard = ({ data }) => (
                     </div>
                 </div>
             </div>
+            <div className="card-status">
+                <Badges icon="star" count={data.stargazers_count} />
+                <Badges icon="eye" count={data.watchers_count} />
+                <Badges icon="repoForked" count={data.forks_count} />
+                <Badges icon="issueOpened" count={data.open_issues_count} />
+            </div>
         </CardContent>
         <CardActions>
-            <Badges icon="star" count={data.stargazers_count} />
-            <Badges icon="eye" count={data.watchers_count} />
-            <Badges icon="repoForked" count={data.forks_count} />
-            <Badges icon="issueOpened" count={data.open_issues_count} />
+
         </CardActions>
     </Card>
 );

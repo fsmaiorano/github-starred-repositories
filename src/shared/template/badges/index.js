@@ -16,7 +16,7 @@ import Tooltip from 'material-ui/Tooltip';
 class Badges extends Component {
 
     getIcon = (iconName) => {
-        switch(iconName){
+        switch (iconName) {
             case 'star': return star;
             case 'eye': return eye;
             case 'issueOpened': return issueOpened;
@@ -25,7 +25,7 @@ class Badges extends Component {
     }
 
     getTooltip = (iconName) => {
-        switch(iconName){
+        switch (iconName) {
             case 'star': return "Star";
             case 'eye': return "Watching";
             case 'issueOpened': return "Issues Opened";
@@ -33,16 +33,17 @@ class Badges extends Component {
         }
     }
 
-    render(){
+    render() {
         const { icon, count } = this.props;
-        return(
+        return (
             <div>
-            <Tooltip id="tooltip-icon" title={this.getTooltip(icon)}>
-                <Badge className="badge" badgeContent={count} color="primary">
-                    <img src={this.getIcon(icon)} className="badge-img" />
-                </Badge>
-            </Tooltip>
-        </div>
+                <Tooltip id="tooltip-icon" title={this.getTooltip(icon)}>
+                    <div className="badge-content">
+                        <img src={this.getIcon(icon)} className="badge-img" />
+                        <p>{count}</p>
+                    </div>
+                </Tooltip>
+            </div>
         )
     }
 }
