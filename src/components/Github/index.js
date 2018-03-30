@@ -16,9 +16,9 @@ class Github extends Component {
 
     state = {
         username: '',
-        listRepositories: [],
         activeFilter: '',
         activeOrderBy: '',
+        listRepositories: [],
     }
 
     searchByUsername = (event) => {

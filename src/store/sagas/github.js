@@ -9,13 +9,15 @@ export function* getStarredRepositoriesRequest(action) {
         const response = yield call(api.get, `/users/${action.payload.username}/starred`);
 
         const repositories = response.data.map(function (item) {
-            return Object.assign({}, item, { 
-                name: item.name.toLowerCase(), 
+            return Object.assign({}, item, {
+                name: item.name.toLowerCase(),
+                description: !item.description ? "[No description]" : item.description,
+                language: !item.language ? "[No language]" : item.language,
                 pushed_at: DateFormat(item.pushed_at),
                 created_at: DateFormat(item.created_at),
             });
-        });  
-       
+        });
+
 
         yield put(GithubActions.getStarredRepositoriesSuccess([...repositories]));
     } catch (error) {

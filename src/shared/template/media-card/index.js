@@ -20,7 +20,7 @@ const MediaCard = ({ data }) => (
                 {data.name}
             </div>
             <div className="card-info" >
-                <p>{data.description && data.description.length > 100 ? data.description.substr(0, 100) + '...' : data.description}</p>
+                <p>{data.description && data.description.length > 60 ? data.description.substr(0, 60) + '...' : data.description}</p>
                 <p>{data.language}</p>
                 <div>
                     <div>
@@ -40,9 +40,6 @@ const MediaCard = ({ data }) => (
                 <Badges icon="issueOpened" count={data.open_issues_count} />
             </div>
         </CardContent>
-        <CardActions>
-
-        </CardActions>
     </Card>
 );
 
