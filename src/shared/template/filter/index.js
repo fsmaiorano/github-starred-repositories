@@ -15,7 +15,7 @@ import './filter.scss';
 class Filter extends Component {
 
     static propTypes = {
-        filter: PropTypes.string.isRequired,
+        filter: PropTypes.string,
         filters: PropTypes.arrayOf(PropTypes.shape).isRequired,
     }
 
