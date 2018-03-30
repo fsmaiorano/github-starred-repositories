@@ -5,9 +5,11 @@ export const Types = {
 
     SET_ORDERBY: 'github/SET_ORDERBY',
     SET_ORDERBY_SUCCESS: 'github/SET_ORDERBY_SUCCESS',
+    SET_ORDERBY_ERROR: 'github/SET_ORDERBY_ERROR',
 
     SET_FILTER: 'github/SET_FILTER',
     SET_FILTER_SUCCESS: 'github/SET_FILTER_SUCCESS',
+    SET_FILTER_ERROR: 'github/SET_FILTER_ERROR',
 };
 
 const initialState = {
@@ -36,6 +38,13 @@ export default function github(state = initialState, action) {
                 orderBy: action.payload.orderBy,
             }
 
+        case Types.SET_ORDERBY_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload.message,
+            }
+
         //Filter
         case Types.SET_FILTER:
             return {
@@ -48,6 +57,13 @@ export default function github(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 filter: action.payload.filter,
+            }
+
+        case Types.SET_FILTER_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload.message,
             }
 
         //Repositories
@@ -63,6 +79,13 @@ export default function github(state = initialState, action) {
                 isLoading: false,
                 repositories: action.payload.github.repositories,
                 languages: action.payload.github.languages,
+            }
+
+        case Types.GET_STARRED_REPOSITORIES_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload.message,
             }
 
         default: return state;
@@ -86,6 +109,13 @@ export const Creators = {
         }
     }),
 
+    setOrderByError: message => ({
+        type: Types.SET_ORDERBY_ERROR,
+        payload: {
+            message,
+        }
+    }),
+
     //Filter
     setFilter: filter => ({
         type: Types.SET_FILTER,
@@ -99,6 +129,13 @@ export const Creators = {
         type: Types.SET_FILTER_SUCCESS,
         payload: {
             filter,
+        }
+    }),
+
+    setFilterError: message => ({
+        type: Types.SET_FILTER_ERROR,
+        payload: {
+            message,
         }
     }),
 

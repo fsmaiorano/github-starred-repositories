@@ -72,7 +72,7 @@ class Github extends Component {
 
     render() {
         const { activeFilter, activeOrderBy, listRepositories } = this.state;
-        const { repositories, filter, orderBy, languages } = this.props;
+        const { repositories, filter, orderBy, languages, error } = this.props;
 
         if (activeFilter !== filter || activeOrderBy !== orderBy)
             this.handleFilters(orderBy, filter, repositories, listRepositories);
@@ -85,29 +85,41 @@ class Github extends Component {
                     <Input onTyping={() => this.searchByUsername} label="Repository" type="text" />
                     <FloatButton color="primary" label="Search" icon="search" click={this.doSearch} />
                 </div>
-                <div>
-                    {
-                        showRepositories.length > 0 ? (
+                {
+                    error ? (
+                        <div className="error-message">
+                            <p>{error}&nbsp;<i class="material-icons">sentiment_dissatisfied</i></p>
+                        </div>
+                    ) :
+                        (
                             <div>
-                                <OrderBy />
-                                <Filter filters={languages} />
-                                <IconButtons click={this.doSort} />
-                            </div>) : ""
-                    }
-                </div>
-                <div className="container">
-                    {
-                        showRepositories.length > 0 && showRepositories.map(repo => (
-                            <GithubRepository key={repo.id} repository={repo} />
-                        ))
-                    }
-                </div>
+                                <div>
+                                    {
+                                        showRepositories && showRepositories.length > 0 ? (
+                                            <div>
+                                                <OrderBy />
+                                                <Filter filters={languages} />
+                                                <IconButtons click={this.doSort} />
+                                            </div>) : ""
+                                    }
+                                </div>
+                                <div className="container">
+                                    {
+                                        showRepositories && showRepositories.length > 0 && showRepositories.map(repo => (
+                                            <GithubRepository key={repo.id} repository={repo} />
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        )
+                }
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
+    error: state.github.error,
     filter: state.github.filter,
     orderBy: state.github.orderBy,
     languages: state.github.languages,

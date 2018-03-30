@@ -29,7 +29,7 @@ export function* getStarredRepositoriesRequest(action) {
 
         yield put(GithubActions.getStarredRepositoriesSuccess({ repositories: [...repositories],  languages: languages   }));
     } catch (error) {
-        yield put(GithubActions.getStarredRepositoriesError('A error occurred on load the repository.'));
+        yield put(GithubActions.getStarredRepositoriesError('A error occurred on load the repository. Please, try again!'));
     }
 };
 
@@ -37,7 +37,7 @@ export function* setOrderBy(action) {
     try {
         yield put(GithubActions.setOrderBySuccess(action.payload.orderBy));
     } catch (err) {
-        yield put(GithubActions.setOrderByError('A error occurred on set order by.'));
+        yield put(GithubActions.setOrderByError('A error occurred on set order by. Please, try again!'));
     }
 }
 
@@ -45,7 +45,7 @@ export function* setFilter(action) {
     try {
         yield put(GithubActions.setFilterSuccess(action.payload.filter));
     } catch (err) {
-        yield put(GithubActions.setFilterError('A error occurred on set filter.'));
+        yield put(GithubActions.setFilterError('A error occurred on set filter. Please, try again!'));
     }
 }
 
