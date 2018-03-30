@@ -10,15 +10,15 @@ import doOrderBy from 'lodash/orderBy';
 
 import api from 'shared/api/api';
 import GithubRepository from './GithubRepository';
-import { Input, FloatButton, OrderBy, IconButtons } from 'shared/template';
+import { Input, FloatButton, OrderBy, IconButtons, Filter } from 'shared/template';
 
 class Github extends Component {
 
     state = {
+        sort: 'asc',
         username: '',
         activeFilter: '',
         activeOrderBy: '',
-        sort: 'asc',
         listRepositories: [],
     }
 
@@ -32,14 +32,17 @@ class Github extends Component {
             this.props.getStarredRepositoriesRequest(username);
     }
 
-    applyFilter = (filter, repositories) => {
-        console.log(filter);
+    applyFilter = (filter, repositories, listRepositories) => {
+        const list = listRepositories.length > 0 ? listRepositories : repositories;
+        const filteredList = repositories.filter(f => f.language === filter);
+        this.setState({ listRepositories: filteredList, activeFilter: filter });
     }
 
-    applyOrderBy = (orderBy, repositories) => {
+    applyOrderBy = (orderBy, repositories, listRepositories) => {
         const { sort } = this.state;
+        const list = listRepositories.length > 0 ? listRepositories : repositories;
         this.setState({ sort: sort === 'asc' ? 'desc' : 'asc' })
-        const orderedList = orderBy !== "" ? doOrderBy(repositories, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(repositories, [repo => repo.id], [sort]);
+        const orderedList = orderBy !== "" ? doOrderBy(list, [repo => repo[`${orderBy}`.toLocaleLowerCase()]], [sort]) : doOrderBy(list, [repo => repo.id], [sort]);
         this.setState({ listRepositories: orderedList, activeOrderBy: orderBy });
     }
 
@@ -53,14 +56,14 @@ class Github extends Component {
     }
 
     render() {
-        const { activeFilter, activeOrderBy } = this.state;
-        const { repositories, filter, orderBy } = this.props;
+        const { activeFilter, activeOrderBy, listRepositories } = this.state;
+        const { repositories, filter, orderBy, languages } = this.props;
 
         if (activeFilter !== filter)
-            this.applyFilter(orderBy, repositories);
+            this.applyFilter(filter, repositories, listRepositories);
 
         if (activeOrderBy !== orderBy)
-            this.applyOrderBy(orderBy, repositories);
+            this.applyOrderBy(orderBy, repositories, listRepositories);
 
         const showRepositories = this.state.listRepositories.length > 0 ? this.state.listRepositories : repositories;
 
@@ -72,7 +75,12 @@ class Github extends Component {
                 </div>
                 <div>
                     {
-                        showRepositories.length > 0 ? (<div><OrderBy /><IconButtons click={this.doSort} /></div>) : ""
+                        showRepositories.length > 0 ? (
+                            <div>
+                                <OrderBy />
+                                <Filter filters={languages} />
+                                <IconButtons click={this.doSort} />
+                            </div>) : ""
                     }
                 </div>
                 <div className="container">
@@ -88,9 +96,10 @@ class Github extends Component {
 }
 
 const mapStateToProps = state => ({
-    repositories: state.github.repositories,
     filter: state.github.filter,
     orderBy: state.github.orderBy,
+    languages: state.github.languages,
+    repositories: state.github.repositories,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);

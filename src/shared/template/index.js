@@ -5,6 +5,7 @@ import Loading from './loading';
 import MediaCard from './media-card';
 import Badges from './badges';
 import OrderBy from './orderBy';
+import Filter from './filter';
 import IconButtons from './icon-button';
 
 export {
@@ -15,5 +16,6 @@ export {
     MediaCard,
     Badges,
     OrderBy,
+    Filter,
     IconButtons,
 };

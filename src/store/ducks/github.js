@@ -61,7 +61,8 @@ export default function github(state = initialState, action) {
             return {
                 ...state,
                 isLoading: false,
-                repositories: action.payload.repositories
+                repositories: action.payload.github.repositories,
+                languages: action.payload.github.languages,
             }
 
         default: return state;
@@ -109,10 +110,10 @@ export const Creators = {
         },
     }),
 
-    getStarredRepositoriesSuccess: repositories => ({
+    getStarredRepositoriesSuccess: github => ({
         type: Types.GET_STARRED_REPOSITORIES_SUCCESS,
         payload: {
-            repositories,
+            github,
         },
     }),
 

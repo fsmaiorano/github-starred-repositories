@@ -8,18 +8,26 @@ export function* getStarredRepositoriesRequest(action) {
     try {
         const response = yield call(api.get, `/users/${action.payload.username}/starred`);
 
-        const repositories = response.data.map(function (item) {
-            return Object.assign({}, item, {
-                name: item.name.toLowerCase(),
-                description: !item.description ? "[No description]" : item.description,
-                language: !item.language ? "[No language]" : item.language,
-                pushed_at: DateFormat(item.pushed_at),
-                created_at: DateFormat(item.created_at),
+        const repositories = response.data.map((repo) => {
+            return Object.assign({}, repo, {
+                name: repo.name.toLowerCase(),
+                description: !repo.description ? "[No description]" : repo.description,
+                language: !repo.language ? "[No language]" : repo.language,
+                pushed_at: DateFormat(repo.pushed_at),
+                created_at: DateFormat(repo.created_at),
             });
         });
 
+        let languages = response.data.map((repo) => {
+            if(!repo.language)
+                repo.language = "Not defined";
 
-        yield put(GithubActions.getStarredRepositoriesSuccess([...repositories]));
+            return repo.language;
+        });
+
+        languages = [...new Set(languages)];
+
+        yield put(GithubActions.getStarredRepositoriesSuccess({ repositories: [...repositories],  languages: languages   }));
     } catch (error) {
         yield put(GithubActions.getStarredRepositoriesError('A error occurred on load the repository.'));
     }
