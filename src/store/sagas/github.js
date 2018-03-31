@@ -6,6 +6,7 @@ import { Creators as GithubActions } from 'store/ducks/github';
 
 export function* getStarredRepositoriesRequest(action) {
     try {
+        //Get repositories
         const response = yield call(api.get, `/users/${action.payload.username}/starred`);
 
         if (response.data.length === 0) {
@@ -13,6 +14,7 @@ export function* getStarredRepositoriesRequest(action) {
         }
         else {
 
+            //Format object for view
             const repositories = response.data.map((repo) => {
                 return Object.assign({}, repo, {
                     name: repo.name.toLowerCase(),
@@ -23,6 +25,7 @@ export function* getStarredRepositoriesRequest(action) {
                 });
             });
 
+            //Create a new array with languages
             let languages = response.data.map((repo) => {
                 if (!repo.language)
                     repo.language = "[No language]";
@@ -30,6 +33,7 @@ export function* getStarredRepositoriesRequest(action) {
                 return repo.language;
             });
 
+            //Each language is unique
             languages = [...new Set(languages)];
 
             yield put(GithubActions.getStarredRepositoriesSuccess({ repositories: [...repositories], languages: languages }));

@@ -24,7 +24,7 @@ class Filter extends Component {
         filters: [],
     }
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         const { filters } = this.props;
         this.setState({ filters });
     }
@@ -66,12 +66,6 @@ class Filter extends Component {
     }
 }
 
-
-const mapStateToProps = state => ({
-
-});
-
 const mapDispatchToProps = dispatch => bindActionCreators(GithubActions, dispatch);
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(Filter);
