@@ -17,7 +17,7 @@ const MediaCard = ({ data }) => (
         />
         <CardContent>
             <div className="card-title">
-                {data.name}
+                <a href={data.html_url} target="_blank" >{data.name}</a>
             </div>
             <div className="card-info" >
                 <p>{data.description && data.description.length > 60 ? data.description.substr(0, 60) + '...' : data.description}</p>

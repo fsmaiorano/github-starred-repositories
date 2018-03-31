@@ -3,7 +3,31 @@
     max-width: 345px;
     min-height: 510px;
     overflow: hidden;
+
+    &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:link {
+        color: black;
+    }
     
+    a:visited {
+        color: black;
+    }
+    
+    a:hover {
+        color: #303F9F;
+    }
+    
+    a:active {
+        color: black;
+    }
+
     > .media {
         height: 200px,
     }
